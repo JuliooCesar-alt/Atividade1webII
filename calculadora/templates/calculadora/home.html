@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora</title>
+</head>
+<body align="center">
+    <h1>Calculadora</h1>
+
+    <!-- Formulário para Soma -->
+    <form method="POST" action="{% url 'soma' %}">
+        {% csrf_token %}
+        <input type="text" name="num1" placeholder="Digite o primeiro número" required> +
+        <input type="text" name="num2" placeholder="Digite o segundo número" required>
+        <input type="submit" value="Somar">
+    </form>
+
+    <br>
+
+    <!-- Formulário para Divisão -->
+    <form method="POST" action="{% url 'divisao' %}">
+        {% csrf_token %}
+        <input type="text" name="num1" placeholder="Digite o primeiro número" required> /
+        <input type="text" name="num2" placeholder="Digite o segundo número" required>
+        <input type="submit" value="Dividir">
+    </form>
+      <br>
+    <!-- Formulário para Subtrair -->
+    <form method="POST" action="{% url 'subtrair' %}">
+        {% csrf_token %}
+        <input type="text" name="num1" placeholder="Digite o primeiro número" required> - <input type="text" name="num2" placeholder="Digite o segundo número" required>
+        <input type="submit" value="Subtrair">
+    </form>
+      <br>
+    <!-- Formulário para Multiplicação -->
+    <form method="POST" action="{% url 'multiplicar' %}">
+        {% csrf_token %}
+        <input type="text" name="num1" placeholder="Digite o primeiro número" required> *
+        <input type="text" name="num2" placeholder="Digite o segundo número" required>
+        <input type="submit" value="Multiplicar">
+    </form>
+    <br>
+    <button onclick="location.href='{% url 'vazio' %}'">Click para sair</button>
+</body>
+</html>
