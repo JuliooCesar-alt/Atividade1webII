@@ -3,8 +3,8 @@ from django.shortcuts import render
 from django.urls import path
 from calculadora import views
 
-def vazio(request):
-          return render(request, 'calculadora/vazio.html')
+def index(request):
+          return render(request, 'calculadora/index.html')
 
 def home(request):
           return render(request, 'calculadora/home.html')  
