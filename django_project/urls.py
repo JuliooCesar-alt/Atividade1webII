@@ -9,6 +9,7 @@ router = DefaultRouter()
 router.register(r'alunos', AlunoViewSet)
 
 urlpatterns = [
+
     path('', views.index, name='index'),  # Página inicial
     path('index/', views.index, name='index'),
     path('home/', views.home, name='home'),
@@ -21,3 +22,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
 ]
+

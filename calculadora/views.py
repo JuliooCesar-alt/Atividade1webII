@@ -3,11 +3,11 @@ from django.shortcuts import render
 from django.urls import path
 from calculadora import views
 
-def vazio(request):
-          return render(request, 'calculadora/vazio.html')
+def index(request):
+          return render(request, 'calculadora/index.html')
 
 def home(request):
-          return render(request, 'calculadora/home.html')  
+          return render(request, 'calculadora//home.html')  
 
 def soma(request):
           try:
@@ -54,7 +54,7 @@ def subtrair(request):
             resultado = num1 - num2
         except (ValueError, TypeError):
             resultado = "Erro nos dados fornecidos!"
-    return render(request, 'calculadora/subtrair.html', {'num1': num1, 'num2': num2, 'resultado': resultado})
+    return render(request, 'templates/subtrair.html', {'num1': num1, 'num2': num2, 'resultado': resultado})
 
 
 def multiplicar(request):
@@ -70,5 +70,9 @@ def multiplicar(request):
         # Aqui você pode redirecionar para um template de resultado
         return render(request, 'calculadora/multiplicar.html', {'num1': num1, 'num2': num2, 'resultado': resultado})
 
+#rota para chamar autor
 def autor(request):
         return render(request, 'calculadora/autor.html')
+#rota para chamar enquete
+def enquete(request):
+    return render(request, 'calculadora/enquete.html')

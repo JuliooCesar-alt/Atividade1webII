@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquete: Qual seu sistema operacional favorito?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .options {
+            list-style-type: none;
+            padding: 0;
+        }
+        .options li {
+            margin-bottom: 10px;
+        }
+        .options input {
+            margin-right: 10px;
+        }
+        .submit-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>O que você achou da Calculadora?</h2>
+        <form id="surveyForm">
+            <div class="question">
+                <p>Escolha uma opção:</p>
+                <ul class="options">
+                    <li>
+                        <label>
+                            <input type="radio" name="Calculadora" value="Excelente!!!" required> Excelente!!!
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="Calculadora" value="Muito Excepcional!!!"> Muito Excepcional!!!
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="Calculadora" value="Muito da hora!!!"> Muito da hora!!!
+                        </label>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="radio" name="Calculadora" value="Muito extremamente Top!!!"> Muito extremamente Top!!!
+                        </label>
+                    </li>
+                     </ul>
+            </div>
+            <button type="submit" class="submit-button">Enviar Resposta</button>
+        </form>
+    </div>
+
+    <script>
+        // Função para capturar a resposta e exibir um alerta
+        document.getElementById('surveyForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita o envio real do formulário
+            const formData = new FormData(event.target);
+            const userChoice = formData.get('Calculadora');
+            alert('Você escolheu: ' + userChoice);
+        });
+    </script>
+</body>
+</html>
