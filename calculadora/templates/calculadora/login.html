@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Julio</title>
+    <style>
+        /* Estilização básica */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            background-color: #f4f4f4;
+            margin: 0 10px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+        }
+
+        .card label {
+            display: block;
+            text-align: left;
+            font-weight: bold;
+            margin: 10px 0 5px;
+            color: #333;
+        }
+
+        .card input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        .card button {
+            width: 100%;
+            padding: 10px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .card button:hover {
+            background-color: #5a6268;
+        }
+
+        .card a {
+            display: block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #007bff;
+            font-size: 14px;
+        }
+
+        .card a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            color: black;
+            background-color: #f8f9fa;
+            position: static; /* Alterado de fixed para evitar sobreposição */
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 style="text-align: center; margin: 20px 0;">Calculadora do Júlio</h1>
+    </header>
+
+    <div class="login-container">
+        <div class="card">
+            <h2>Login para calcular</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <label for="usuario">Usuário:</label>
+                <input type="text" id="usuario" name="usuario" required>
+                
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" required>
+                
+                <button type="submit">Entrar</button>
+                
+                <!-- Botão para redirecionar para a página de cadastro -->
+                <a href="{% url 'cadastro' %}">Cadastrar-se</a>
+            </form>
+            {% if error %}
+            <p style="color:red;">{{ error }}</p>  <!-- Exibe mensagem de erro se existir -->
+            {% endif %}
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Julio - Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

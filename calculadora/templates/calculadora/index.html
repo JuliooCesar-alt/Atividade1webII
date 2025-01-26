@@ -3,13 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <title>Bem-vindo à Calculadora</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 200px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .entrar-btn {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .entrar-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .autor-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .autor-btn:hover {
+            background-color: #218838;
+        }
+
+        .enquete-btn {
+            background-color: #ffc107;
+            color: white;
+        }
+
+        .enquete-btn:hover {
+            background-color: #e0a800;
+        }
+
+        .login-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .login-btn:hover {
+            background-color: #c82333;
+        }
+
+    </style>
 </head>
-<body align="center">
-    <h1>Bem-vindo à Calculadora</h1>
-    <button type="button" onclick="location.href='{% url 'home' %}'">Clique para Entrar</button> 
-    
-    <br><br><button type="button" onclick="window.location.href='{% url 'autor' %}'">Ir para a página do Autor</button>
-    
-    <br><br><button type="button" onclick="window.location.href='{% url 'enquete' %}'">Enquete</button>
+<body>
+    <div>
+        <h1>Bem-vindo à Calculadora do Júlio</h1>
+        <div class="button-container">
+            <!--<button class="entrar-btn" type="button" onclick="location.href='{% url 'home' %}'">Clique para Entrar</button> -->
+            
+            <button class="entrar-btn" type="button" onclick="window.location.href='{% url 'login' %}'">Login</button>
+            
+          
+            <button class="enquete-btn" type="button" onclick="window.location.href='{% url 'enquete' %}'">Enquete</button>
+
+             <button class="autor-btn" type="button" onclick="window.location.href='{% url 'autor' %}'">Ir para a página do Autor</button>
+            
+            
+        </div>
+    </div>
 </body>
 </html>
