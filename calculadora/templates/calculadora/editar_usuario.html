@@ -1,0 +1,16 @@
+<h1>Editar Usuário</h1>
+<form method="POST">
+  {% csrf_token %}
+  <label>Nome:</label>
+  <input type="text" name="nome" value="{{ usuario.nome }}" required><br>
+
+  <label>Email:</label>
+  <input type="email" name="email" value="{{ usuario.email }}" required><br>
+
+  <label>Idade:</label>
+  <input type="number" name="idade" value="{{ usuario.idade }}" required><br>
+
+  <button type="submit">Salvar Alterações</button>
+</form>
+
+<a href="{% url 'listar_usuarios' %}">Cancelar</a>

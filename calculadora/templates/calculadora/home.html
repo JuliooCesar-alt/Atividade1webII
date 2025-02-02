@@ -78,7 +78,10 @@
         }
 
         button:hover {
-            background-color: #c53030;
+            background-color: #2980b9;
+        }
+        .button_user {
+            background-color: green; /* Cor verde para o botão */
         }
 
         @media (max-width: 500px) {
@@ -130,5 +133,9 @@
     </div>
 
     <button onclick="location.href='{% url 'login' %}'">Click para sair</button>
+
+    <a href="{% url 'listar_usuarios' %}"><button class="button_user">Gerenciar Usuários</button>
+    </a>
+
 </body>
 </html>
