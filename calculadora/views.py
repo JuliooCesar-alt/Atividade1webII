@@ -4,6 +4,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
+from .models import Usuario
+from django.shortcuts import render, get_object_or_404
 
 
 def index(request):
@@ -143,3 +145,62 @@ def cadastro(request):
                 'cadastro')  # Redirecionar de volta para a tela de cadastro
 
     return render(request, 'calculadora/cadastro.html')
+
+    ### Rotas Usuarios ###
+
+
+# Criar usuário
+def criar_usuario(request):
+    if request.method == "POST":
+        nome = request.POST["nome"]
+        email = request.POST["email"]
+        idade = request.POST["idade"]
+        Usuario.objects.create(nome=nome, email=email, idade=idade)
+        return redirect("listar_usuarios")
+    return render(request, "calculadora/criar_usuario.html")
+
+
+# Listar usuários
+def listar_usuarios(request):
+    usuarios = Usuario.objects.all()
+    return render(request, "calculadora/listar_usuarios.html",
+                  {"usuarios": usuarios})
+
+
+# Buscar usuários
+def buscar_usuario(request):
+    query = request.GET.get("q")
+    usuarios = Usuario.objects.filter(nome__icontains=query)
+    return render(request, "calculadora/listar_usuarios.html",
+                  {"usuarios": usuarios})
+
+
+# Editar usuário
+def editar_usuario(request, id):
+    usuario = get_object_or_404(Usuario, id=id)
+    if request.method == "POST":
+        usuario.nome = request.POST["nome"]
+        usuario.email = request.POST["email"]
+        usuario.idade = request.POST["idade"]
+        usuario.save()
+        return redirect("listar_usuarios")
+    return render(request, "calculadora/editar_usuario.html",
+                  {"usuario": usuario})
+
+
+# Deletar usuário
+def apagar_usuario(request, id):
+    usuario = get_object_or_404(Usuario, id=id)
+    if request.method == "POST":
+        usuario.delete()
+        return redirect("listar_usuarios")
+    return render(request, "calculadora/apagar_usuario.html",
+                  {"usuario": usuario})
+
+
+# Garantir que apenas usuários logados acessem as páginas
+@login_required
+def listar_usuarios(request):
+    usuarios = Usuario.objects.all()
+    return render(request, "calculadora/listar_usuarios.html",
+                  {"usuarios": usuarios})
