@@ -56,6 +56,11 @@
             background-color: #28a745;
             color: white;
         }
+        
+        .form-btn {
+            background-color: #6495ED;
+            color: white;
+        }
 
         .autor-btn:hover {
             background-color: #218838;
@@ -92,7 +97,11 @@
           
             <button class="enquete-btn" type="button" onclick="window.location.href='{% url 'enquete' %}'">Enquete</button>
 
+               <button class="form-btn" type="button" onclick="window.location.href='{% url 'formulario' %}'">Ir para Formulário de Validação</button>
+
              <button class="autor-btn" type="button" onclick="window.location.href='{% url 'autor' %}'">Ir para a página do Autor</button>
+
+ 
             
             
         </div>

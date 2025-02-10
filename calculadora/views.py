@@ -204,3 +204,7 @@ def listar_usuarios(request):
     usuarios = Usuario.objects.all()
     return render(request, "calculadora/listar_usuarios.html",
                   {"usuarios": usuarios})
+
+
+def formulario(request):
+    return render(request, "calculadora/formulario.html")
