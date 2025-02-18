@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de CEP</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>Consulta de Endereço via CEP</h2>
+    
+    <label for="cep">Digite o CEP:</label>
+    <input type="text" id="cep" maxlength="8" placeholder="Ex: 01001000" required>
+    <button id="buscar">Buscar</button>
+    
+    <div id="resultado"></div>
+    
+   
+    <input type="hidden" id="csrf_token" value="{{ csrf_token }}">
+
+    <script>
+        $(document).ready(function() {
+           
+            $("#buscar").click(function() {
+                var cep = $("#cep").val().replace(/\D/g, '');  // Remover qualquer caractere não numérico
+                var csrfToken = $("#csrf_token").val();  
+                
+                // Validação do formato do CEP (somente números, 8 dígitos)
+                if (cep.length !== 8) {
+                    alert("Digite um CEP válido com 8 números.");
+                    return;
+                }
+
+                // Fazendo a requisição AJAX para buscar o CEP
+                $.ajax({
+                    url: "{% url 'buscar_cep' %}",  
+                    type: "POST",
+                    data: { cep: cep },
+                    headers: { "X-CSRFToken": csrfToken },  
+                    success: function(response) {
+                        if (response.erro) {
+                            // Exibir erro se o CEP não for encontrado
+                            $("#resultado").html("<p style='color:red;'>" + response.erro + "</p>");
+                        } else {
+                            // Exibir os dados do CEP encontrado
+                            $("#resultado").html(
+                                "<p><strong>Endereço:</strong> " + response.endereco + "</p>" +
+                                "<p><strong>Bairro:</strong> " + response.bairro + "</p>" +
+                                "<p><strong>Cidade:</strong> " + response.cidade + "</p>" +
+                                "<p><strong>Estado:</strong> " + response.estado + "</p>"
+                            );
+                        }
+                    },
+                    error: function() {
+                        
+                        $("#resultado").html("<p style='color:red;'>Erro ao buscar CEP! Tente novamente.</p>");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

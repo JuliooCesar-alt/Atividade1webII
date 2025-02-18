@@ -1,26 +1,134 @@
-<h1>Lista de Usuários</h1>
-<ul>
-  {% for usuario in usuarios %}
-    <li>
-      {{ usuario.nome }} - {{ usuario.email }} - {{ usuario.idade }} anos
-      <a href="{% url 'editar_usuario' usuario.id %}">Editar</a>
-      <a href="{% url 'apagar_usuario' usuario.id %}">Excluir</a>
-    </li>
-  {% empty %}
-    <li>Nenhum usuário encontrado.</li>
-  {% endfor %}
-</ul>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Usuários</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
 
-<h2>Buscar Usuário</h2>
-<form method="GET" action="{% url 'buscar_usuario' %}">
-  <input type="text" name="q" placeholder="Digite o nome">
-  <button type="submit">Buscar</button>
-</form>
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px 0;
+      text-align: center;
+    }
 
-  <br>
-    
-    <a href="{% url 'criar_usuario' %}">Adicionar Novo Usuário</a> 
-    <br>
+    h1 {
+      margin: 0;
+    }
 
-    <br>
-    <a href="{% url 'home' %}">Voltar para calculadora</a>
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 20px;
+    }
+
+    li {
+      background-color: white;
+      margin-bottom: 10px;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    li a {
+      text-decoration: none;
+      color: #4CAF50;
+      margin-left: 10px;
+      font-weight: bold;
+    }
+
+    li a:hover {
+      color: #45a049;
+    }
+
+    h2 {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-right: 10px;
+      width: 300px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .action-links {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .action-links a {
+      text-decoration: none;
+      font-weight: bold;
+      color: #4CAF50;
+      margin: 0 10px;
+    }
+
+    .action-links a:hover {
+      color: #45a049;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Lista de Usuários</h1>
+  </header>
+
+  <div class="content">
+    <ul>
+      {% for usuario in usuarios %}
+        <li>
+          {{ usuario.nome }} - {{ usuario.email }} - {{ usuario.idade }} anos
+          <a href="{% url 'editar_usuario' usuario.id %}">Editar</a>
+          <a href="{% url 'apagar_usuario' usuario.id %}">Excluir</a>
+        </li>
+      {% empty %}
+        <li>Nenhum usuário encontrado.</li>
+      {% endfor %}
+    </ul>
+
+    <h2>Buscar Usuário</h2>
+    <form method="GET" action="{% url 'buscar_usuario' %}">
+      <input type="text" name="q" placeholder="Digite o nome">
+      <button type="submit">Buscar</button>
+    </form>
+
+    <div class="action-links">
+      <a href="{% url 'criar_usuario' %}">Adicionar Novo Usuário</a>
+      <a href="{% url 'home' %}">Voltar para calculadora</a>
+    </div>
+  </div>
+
+</body>
+</html>

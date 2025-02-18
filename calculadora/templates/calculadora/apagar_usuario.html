@@ -1,8 +1,98 @@
-<h1>Tem certeza que deseja excluir {{ usuario.nome }}?</h1>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirmar Exclusão</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
 
-<form method="POST">
-  {% csrf_token %}
-  <button type="submit">Sim, excluir</button>
-</form>
+    header {
+      background-color: #FF6347;
+      color: white;
+      padding: 15px 0;
+      text-align: center;
+    }
 
-<a href="{% url 'listar_usuarios' %}">Cancelar</a>
+    h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 40px;
+    }
+
+    .confirmation-box {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      width: 400px;
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #FF6347;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #e5533d;
+    }
+
+    .back-link {
+      margin-top: 15px;
+    }
+
+    .back-link a {
+      text-decoration: none;
+      font-weight: bold;
+      color: #4CAF50;
+    }
+
+    .back-link a:hover {
+      color: #45a049;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Confirmar Exclusão</h1>
+  </header>
+
+  <div class="content">
+    <div class="confirmation-box">
+      <p>Tem certeza que deseja excluir <strong>{{ usuario.nome }}</strong>?</p>
+
+      <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Sim, excluir</button>
+      </form>
+
+      <div class="back-link">
+        <a href="{% url 'listar_usuarios' %}">Cancelar</a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

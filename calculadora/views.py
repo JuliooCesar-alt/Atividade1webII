@@ -7,6 +7,11 @@ from django.contrib.auth.models import User
 from .models import Usuario
 from django.shortcuts import render, get_object_or_404
 
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+
+
 
 def index(request):
     return render(request, 'calculadora/index.html')
@@ -208,3 +213,28 @@ def listar_usuarios(request):
 
 def formulario(request):
     return render(request, "calculadora/formulario.html")
+
+
+
+#Requisições Assíncronas
+@csrf_exempt
+def buscar_cep(request):
+    # Verificar se a requisição é POST ou GET e buscar o CEP
+    if request.method in ["POST", "GET"]:
+        cep = request.POST.get("cep") if request.method == "POST" else request.GET.get("cep")
+
+        if not cep:
+            return JsonResponse({"erro": "CEP não informado"}, status=400)
+
+        # Simulação de banco de dados ou API (como o ViaCEP)
+        dados_cep = {
+            "01001000": {"endereco": "Praça da Sé", "bairro": "Sé", "cidade": "São Paulo", "estado": "SP"},
+            "20040002": {"endereco": "Avenida Rio Branco", "bairro": "Centro", "cidade": "Rio de Janeiro", "estado": "RJ"},
+        }
+
+        # Verificando se o CEP existe no dicionário
+        resposta = dados_cep.get(cep, {"erro": "CEP não encontrado"})
+
+        return JsonResponse(resposta)
+
+    return JsonResponse({"erro": "Método inválido. Use POST ou GET."}, status=405)

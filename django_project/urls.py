@@ -4,6 +4,10 @@ from calculadora import views
 from django.urls import path, include
 from django.contrib.auth import authenticate, login
 
+from django.urls import path
+from calculadora.views import buscar_cep
+
+
 urlpatterns = [
     path('', views.index, name='index'),  # Página inicial
     path('index/', views.index, name='index'),
@@ -20,8 +24,13 @@ urlpatterns = [
     path('usuarios/', views.listar_usuarios, name='listar_usuarios'),
     path('usuarios/criar/', views.criar_usuario, name='criar_usuario'),
     path('usuarios/buscar/', views.buscar_usuario, name='buscar_usuario'),
-    path('usuarios/editar/<int:id>/', views.editar_usuario, name='editar_usuario'),
-    path('usuarios/apagar/<int:id>/', views.apagar_usuario,  name='apagar_usuario'),
+    path('usuarios/editar/<int:id>/',
+         views.editar_usuario,
+         name='editar_usuario'),
+    path('usuarios/apagar/<int:id>/',
+         views.apagar_usuario,
+         name='apagar_usuario'),
     path('usuarios/', views.listar_usuarios, name='listar_usuarios'),
     path('formulario/', views.formulario, name='formulario'),
+    path('consulta-cep/', buscar_cep, name='consulta_cep'),
 ]
